@@ -89,6 +89,13 @@ smart-issue-board/
 ---
 
 ## 📸 Screenshots
+<img width="1894" height="852" alt="image" src="https://github.com/user-attachments/assets/3ac0fb00-8fcd-44c9-a8e4-51ec29443be6" />
+
+<img width="1896" height="860" alt="image" src="https://github.com/user-attachments/assets/a94fe293-5a7c-4c6f-b685-5d97d131dd5a" />
+
+<img width="1897" height="775" alt="image" src="https://github.com/user-attachments/assets/a76faa0b-f013-422e-ad5f-716cfcaca0a3" />
+
+<img width="1897" height="763" alt="image" src="https://github.com/user-attachments/assets/9948189e-ac74-4d49-aec6-754760058b27" />
 
 ---
 
