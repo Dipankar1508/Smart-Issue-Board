@@ -19,30 +19,33 @@ export default function App() {
   if (!user) return <Auth onAuthSuccess={() => { }} />;
 
   return (
-    <div className="app-container">
-      <nav className="navbar">
-        <div className="nav-left">
-          <div className="logo-badge">SIB</div>
+    <main className="app-main">
+      <div className="app-container">
+        <nav className="navbar">
+          <div className="nav-left">
+            <div className="logo-badge">SIB</div>
 
-          <div className="nav-text">
-            <h2 className="nav-title">Smart Issue Board</h2>
-            <span className="nav-user">
-              {user.email}
-            </span>
+            <div className="nav-text">
+              <h2 className="nav-title">Smart Issue Board</h2>
+              <span className="nav-user">
+                {user.email}
+              </span>
+            </div>
           </div>
-        </div>
 
-        <button
-          className="logout-btn"
-          onClick={() => signOut(auth)}
-        >
-          Logout
-        </button>
-      </nav>
+          <button
+            className="logout-btn"
+            onClick={() => signOut(auth)}
+          >
+            Logout
+          </button>
+        </nav>
 
-      <CreateIssue user={user} />
-      <IssueList />
-    </div>
+        <CreateIssue user={user} />
+        <IssueList />
+      </div>
+    </main>
+
   );
 
 }
