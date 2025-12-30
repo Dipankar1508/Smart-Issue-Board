@@ -1,0 +1,93 @@
+.create-issue {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin-bottom: 35px;
+    animation: fadeUp 0.3s ease;
+}
+
+.create-issue h3 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #1f2937;
+}
+
+.issue-input,
+.issue-textarea,
+.issue-select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 13px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.issue-input:focus,
+.issue-textarea:focus,
+.issue-select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.issue-textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.issue-submit {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 16px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.issue-submit:hover {
+    box-shadow: 0 10px 18px rgba(22, 163, 74, 0.35);
+    transform: translateY(-1px);
+}
+
+.issue-submit:active {
+    transform: scale(0.97);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Tablet */
+@media (max-width: 768px) {
+    .create-issue {
+        padding: 18px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .create-issue {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .issue-submit {
+        width: 100%;
+    }
+}
