@@ -12,7 +12,8 @@ export default function Auth({ onAuthSuccess }) {
     const [isLogin, setIsLogin] = useState(true);
     const [error, setError] = useState("");
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        if (e) e.preventDefault();
         setError("");
         try {
             if (isLogin) {
@@ -22,45 +23,75 @@ export default function Auth({ onAuthSuccess }) {
             }
             onAuthSuccess();
         } catch (err) {
-            setError(err.message);
+            const friendlyError = err.code === 'auth/user-not-found'
+                ? "No account found with this email."
+                : err.message;
+            setError(friendlyError);
         }
     };
 
     return (
-        <div className="auth-container">
-            <h2 className="auth-title">
-                {isLogin ? "Login" : "Sign Up"}
-            </h2>
+        <div className="auth-page-container">
+            <div className="auth-visual-side">
+                <div className="visual-overlay"></div>
+                <div className="visual-content">
+                    <div className="brand-badge">Smart Issue Board v1.0</div>
+                    <h1>Organize issues <br /><span>with intelligence.</span></h1>
+                    <ul className="feature-list">
+                        {/* <li>✦ AI-Powered Duplicate Detection</li> */}
+                        <li>✦ Smart Workflow Enforcement</li>
+                        <li>✦ Priority-Based Sorting</li>
+                    </ul>
+                </div>
+            </div>
 
-            <input
-                className="auth-input"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className="auth-form-side">
+                <div className="form-wrapper">
+                    <div className="form-header">
+                        <h2>{isLogin ? "Sign In" : "Create Account"}</h2>
+                        <p>{isLogin ? "Welcome back! Please enter your details." : "Join us to start managing issues smarter."}</p>
+                    </div>
 
-            <input
-                className="auth-input"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+                    <form onSubmit={handleSubmit} className="actual-form">
+                        <div className="input-block">
+                            <label>Email Address</label>
+                            <input
+                                type="email"
+                                placeholder="you@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                maxLength={60}
+                                required
+                            />
+                        </div>
 
-            {error && <p className="auth-error">{error}</p>}
+                        <div className="input-block">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                placeholder="Set a strong password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                maxLength={100}
+                                required
+                            />
+                        </div>
 
-            <button className="auth-button" onClick={handleSubmit}>
-                {isLogin ? "Login" : "Create Account"}
-            </button>
+                        {error && <div className="error-pill">{error}</div>}
 
-            <p
-                className="auth-toggle"
-                onClick={() => setIsLogin(!isLogin)}
-            >
-                {isLogin
-                    ? "Don't have an account? Sign up"
-                    : "Already have an account? Login"}
-            </p>
+                        <button type="submit" className="main-submit-btn">
+                            {isLogin ? "Login to Dashboard" : "Get Started"}
+                        </button>
+                    </form>
+
+                    <p className="toggle-text">
+                        {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+                        <span onClick={() => setIsLogin(!isLogin)}>
+                            {isLogin ? "Sign up" : "Log in"}
+                        </span>
+                    </p>
+                </div>
+            </div>
         </div>
     );
 }

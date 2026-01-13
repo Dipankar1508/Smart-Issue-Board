@@ -92,55 +92,65 @@ export default function IssueList() {
                 </select>
             </div>
 
-            {filteredIssues.length === 0 && <p>No issues found.</p>}
 
-            {filteredIssues.map((issue) => (
-                <div key={issue.id} className="issue-card">
-                    <h4 className="issue-title">{issue.title}</h4>
+            {loading && <p className="loading">Loading issues...</p>}
+            {filteredIssues.length === 0 && <p className="no-issues">No issues found.</p>}
 
-                    <p className="issue-description">{issue.description}</p>
+            <div className="issue-grid">
+                {filteredIssues.map((issue) => (
+                    <div key={issue.id} className="issue-card">
+                        <h4 className="issue-title">{issue.title}</h4>
+                        <p className="issue-description">{issue.description}</p>
 
-                    <p className="issue-meta">
-                        <b>Priority:</b> {issue.priority} |{" "}
-                        <b>Status:</b> {issue.status}
-                    </p>
+                        <div className="issue-meta">
+                            <div className="issue-meta-row">
+                                <span className={`priority-badge priority-${issue.priority.toLowerCase()}`}>
+                                    {issue.priority}
+                                </span>
+                                <span className={`status-badge status-${issue.status.toLowerCase().replace(' ', '-')}`}>
+                                    {issue.status}
+                                </span>
+                            </div>
+                            <div className="assigned-meta">
+                                <b>Assigned To:</b> {issue.assignedTo || "Not assigned"}
+                            </div>
+                        </div>
 
-                    <p className="issue-meta">
-                        <b>Assigned To:</b>{" "}
-                        {issue.assignedTo || "Not assigned"}
-                    </p>
+                        <p className="issue-footer">
+                            Created by {issue.createdBy}
+                        </p>
 
-                    <p className="issue-footer">
-                        Created by {issue.createdBy}
-                    </p>
+                        <div className="issue-actions">
+                            <button
+                                className="status-btn btn-progress"
+                                onClick={() => updateStatus(issue, "In Progress")}
+                                disabled={issue.status === "In Progress"}
+                            >
+                                In Progress
+                            </button>
 
-                    <div className="issue-actions">
-                        <button
-                            className="status-btn btn-progress"
-                            onClick={() => updateStatus(issue, "In Progress")}
-                            disabled={issue.status === "In Progress"}
-                        >
-                            In Progress
-                        </button>
+                            <button
+                                className="status-btn btn-done"
+                                onClick={() => updateStatus(issue, "Done")}
+                                disabled={issue.status === "Done"}
+                            >
+                                Done
+                            </button>
 
-                        <button
-                            className="status-btn btn-done"
-                            onClick={() => updateStatus(issue, "Done")}
-                            disabled={issue.status === "Done"}
-                        >
-                            Done
-                        </button>
-
-                        <button
-                            className="status-btn btn-open"
-                            onClick={() => updateStatus(issue, "Open")}
-                            disabled={issue.status === "Open"}
-                        >
-                            Open
-                        </button>
+                            <button
+                                className="status-btn btn-open"
+                                onClick={() => updateStatus(issue, "Open")}
+                                disabled={issue.status === "Open"}
+                            >
+                                Open
+                            </button>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
+
         </div>
+
+
     );
 }

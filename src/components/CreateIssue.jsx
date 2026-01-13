@@ -12,40 +12,30 @@ export default function CreateIssue({ user }) {
     const [status, setStatus] = useState("Open");
     const [assignedTo, setAssignedTo] = useState("");
 
-    const normalize = (text) =>
-        text.toLowerCase().replace(/[^a-z0-9 ]/g, "");
-
+    const normalize = (text) => text.toLowerCase().replace(/[^a-z0-9 ]/g, "");
     const isSimilarTitle = (newTitle, existingTitle) => {
         const newWords = normalize(newTitle).split(" ");
         const existing = normalize(existingTitle);
-
-        return newWords.some(
-            (word) => word.length > 3 && existing.includes(word)
-        );
+        return newWords.some((word) => word.length > 3 && existing.includes(word));
     };
 
     const handleCreate = async (e) => {
         e.preventDefault();
-
         if (!title || !description) {
             alert("Title and Description are required");
             return;
         }
-
         try {
             const snapshot = await getDocs(collection(db, "issues"));
-
             const similarIssues = snapshot.docs.filter((doc) =>
                 isSimilarTitle(title, doc.data().title)
             );
-
             if (similarIssues.length > 0) {
                 const confirmCreate = window.confirm(
                     `Similar issue(s) found (${similarIssues.length}). Do you want to continue?`
                 );
                 if (!confirmCreate) return;
             }
-
             await addDoc(collection(db, "issues"), {
                 title,
                 description,
@@ -55,13 +45,7 @@ export default function CreateIssue({ user }) {
                 createdBy: user.email,
                 createdAt: serverTimestamp(),
             });
-
-            setTitle("");
-            setDescription("");
-            setPriority("Low");
-            setStatus("Open");
-            setAssignedTo("");
-
+            setTitle(""); setDescription(""); setPriority("Low"); setStatus("Open"); setAssignedTo("");
             alert("Issue created successfully ✅");
         } catch (error) {
             alert(error.message);
@@ -69,54 +53,74 @@ export default function CreateIssue({ user }) {
     };
 
     return (
-        <div className="create-issue">
-            <h3>Create Issue</h3>
+        <div className="dashboard-container-full">
 
-            <form onSubmit={handleCreate}>
-                <input
-                    className="issue-input"
-                    placeholder="Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
+            <form onSubmit={handleCreate} className="issue-form-grid-full">
+                <section className="section-main-full">
+                    <div className="form-card-full">
+                        <div className="form-row">
+                            <label>Issue Title</label>
+                            <input
+                                className="issue-input"
+                                placeholder="Summary of the problem..."
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                maxLength={60}
+                                required
+                            />
+                        </div>
 
-                <textarea
-                    className="issue-textarea"
-                    placeholder="Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                />
+                        <div className="form-row">
+                            <label>Description</label>
+                            <textarea
+                                className="issue-textarea-full"
+                                placeholder="Steps to reproduce, expected behavior, etc."
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                maxLength={250}
+                                required
+                            />
+                        </div>
+                    </div>
+                </section>
 
-                <select
-                    className="issue-select"
-                    value={priority}
-                    onChange={(e) => setPriority(e.target.value)}
-                >
-                    <option>Low</option>
-                    <option>Medium</option>
-                    <option>High</option>
-                </select>
+                <aside className="section-sidebar-full">
+                    <div className="sidebar-card-full">
+                        <div className="form-row">
+                            <label>Priority</label>
+                            <select className="issue-select" value={priority} onChange={(e) => setPriority(e.target.value)}>
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High</option>
+                            </select>
+                        </div>
 
-                <select
-                    className="issue-select"
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value)}
-                >
-                    <option>Open</option>
-                    <option>In Progress</option>
-                    <option>Done</option>
-                </select>
+                        <div className="form-row">
+                            <label>Status</label>
+                            <select className="issue-select" value={status} onChange={(e) => setStatus(e.target.value)}>
+                                <option>Open</option>
+                                <option>In Progress</option>
+                                <option>Done</option>
+                            </select>
+                        </div>
 
-                <input
-                    className="issue-input"
-                    placeholder="Assigned To (email or name)"
-                    value={assignedTo}
-                    onChange={(e) => setAssignedTo(e.target.value)}
-                />
+                        <div className="form-row">
+                            <label>Assigned To</label>
+                            <input
+                                className="issue-input"
+                                placeholder="User email or name"
+                                value={assignedTo}
+                                onChange={(e) => setAssignedTo(e.target.value)}
+                                maxLength={60}
+                                required
+                            />
+                        </div>
 
-                <button type="submit" className="issue-submit">
-                    Create Issue
-                </button>
+                        <button type="submit" className="issue-submit-btn">
+                            Publish Issue
+                        </button>
+                    </div>
+                </aside>
             </form>
         </div>
     );
