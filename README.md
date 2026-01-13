@@ -1,4 +1,4 @@
-<img width="1919" height="858" alt="image" src="https://github.com/user-attachments/assets/70be3471-8554-4eac-b2fb-6e9c01e62d44" /># 🧠 Smart Issue Board
+## 🧠 Smart Issue Board
 
 A modern, responsive **Issue Tracking Web Application** built using **React** and **Firebase**, designed to help teams create, manage, and track issues efficiently.
 
