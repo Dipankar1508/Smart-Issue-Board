@@ -1,4 +1,4 @@
-# 🧠 Smart Issue Board
+<img width="1919" height="858" alt="image" src="https://github.com/user-attachments/assets/70be3471-8554-4eac-b2fb-6e9c01e62d44" /># 🧠 Smart Issue Board
 
 A modern, responsive **Issue Tracking Web Application** built using **React** and **Firebase**, designed to help teams create, manage, and track issues efficiently.
 
@@ -92,13 +92,13 @@ smart-issue-board/
 
 ## 📸 Screenshots
 
-<img width="1894" height="852" alt="image" src="https://github.com/user-attachments/assets/3ac0fb00-8fcd-44c9-a8e4-51ec29443be6" />
+<img width="1919" height="858" alt="image" src="https://github.com/user-attachments/assets/486344bf-8b71-4b33-9e64-56fb0ef71a05" />
 
-<img width="1896" height="860" alt="image" src="https://github.com/user-attachments/assets/a94fe293-5a7c-4c6f-b685-5d97d131dd5a" />
+<img width="1898" height="858" alt="image" src="https://github.com/user-attachments/assets/baa5c91f-96e4-4e44-a3e6-85262252357f" />
 
-<img width="1897" height="775" alt="image" src="https://github.com/user-attachments/assets/a76faa0b-f013-422e-ad5f-716cfcaca0a3" />
+<img width="1897" height="861" alt="image" src="https://github.com/user-attachments/assets/23eb1120-4e5d-4e11-9a33-8d8a66c7c300" />
 
-<img width="1897" height="763" alt="image" src="https://github.com/user-attachments/assets/9948189e-ac74-4d49-aec6-754760058b27" />
+<img width="1900" height="868" alt="image" src="https://github.com/user-attachments/assets/98343135-02b5-4947-b3fa-d43b2c1d7c8f" />
 
 ---
 
